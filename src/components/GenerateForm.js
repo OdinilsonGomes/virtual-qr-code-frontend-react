@@ -33,9 +33,11 @@ const GenerateForm = () => {
                 cleanForm()
                 setFormResp(response.data);
             }).catch((error)=>{
+                setValidForm(false)
+                setSmsError(error.response.data)
                 console.log(error);
             }).finally(()=> {
-                console.log("API FIM");
+                setLoading(0)
             });
         }
         
