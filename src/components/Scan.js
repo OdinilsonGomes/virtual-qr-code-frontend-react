@@ -12,7 +12,7 @@ const [linkedin_url, setLinkedinUrl]=useState()
 const [github_url, setGithubUrl]=useState()
 const [form_resp, setFormResp]=useState()
 const getCard = ()=>{
-    axios.get("http://127.0.0.1:8000/scan/"+urlName)
+    axios.get(`${process.env.REACT_APP_BACKENDAPI}scan/`+urlName)
     .then((response)=> {
         setFormResp(response.data[0]);
         setNome(form_resp.name)

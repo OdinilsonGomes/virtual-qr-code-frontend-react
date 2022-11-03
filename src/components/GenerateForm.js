@@ -19,7 +19,6 @@ const GenerateForm = () => {
     //
     // Post Method 
     const postCard = ()=>{
-        
         if(validate()){
             //Past form in Json format
             const data={"name":nome,"linkedin_url":linkedin_url,"github_url":github_url};
@@ -28,10 +27,11 @@ const GenerateForm = () => {
             // Set Response to null
             setFormResp(null)
             // Send Data 
-            axios.post("http://127.0.0.1:8000/generate",data)
+            axios.post(`${process.env.REACT_APP_BACKENDAPI}generate`,data)
             .then((response)=> {
+                console.log(response.data)
                 cleanForm()
-                setFormResp(response.data);
+                setFormResp(`${process.env.REACT_APP_FRONTENDURL}`+response.data.name);
             }).catch((error)=>{
                 setValidForm(false)
                 setSmsError(error.response.data)
